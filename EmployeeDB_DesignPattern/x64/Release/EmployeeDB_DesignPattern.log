@@ -1,0 +1,18 @@
+﻿  AssemblyInfo.cpp
+  Developer.cpp
+  employee.cpp
+  ClientCode.cpp
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\ClientCode.cpp(107,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\ClientCode.cpp(126,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\ClientCode.cpp(144,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Employeefactory.cpp
+  EmployeeFileHandler.cpp
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\EmployeeFileHandler.cpp(162,5): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\EmployeeFileHandler.cpp(163,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\EmployeeFileHandler.cpp(164,12): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  EmployeeHandler.cpp
+  Manager.cpp
+  qa.cpp
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  AssemblyInfo.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  EmployeeDB_DesignPattern.vcxproj -> C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\x64\Release\EmployeeDB_DesignPattern.exe

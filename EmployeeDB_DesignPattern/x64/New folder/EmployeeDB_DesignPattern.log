@@ -1,0 +1,19 @@
+﻿  AssemblyInfo.cpp
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\AssemblyInfo.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Debug\EmployeeDB_DesignPattern.pch': No such file or directory
+  Developer.cpp
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\Developer.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Debug\EmployeeDB_DesignPattern.pch': No such file or directory
+  employee.cpp
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\employee.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Debug\EmployeeDB_DesignPattern.pch': No such file or directory
+  ClientCode.cpp
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\ClientCode.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Debug\EmployeeDB_DesignPattern.pch': No such file or directory
+  Employeefactory.cpp
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\Employeefactory.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Debug\EmployeeDB_DesignPattern.pch': No such file or directory
+  EmployeeFileHandler.cpp
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\EmployeeFileHandler.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Debug\EmployeeDB_DesignPattern.pch': No such file or directory
+  EmployeeHandler.cpp
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\EmployeeHandler.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Debug\EmployeeDB_DesignPattern.pch': No such file or directory
+  Manager.cpp
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\Manager.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Debug\EmployeeDB_DesignPattern.pch': No such file or directory
+  qa.cpp
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\qa.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Debug\EmployeeDB_DesignPattern.pch': No such file or directory
+  Generating Code...

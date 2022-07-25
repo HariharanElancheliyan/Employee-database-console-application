@@ -1,0 +1,2 @@
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\x64\Debug\EmployeeDB_DesignPattern.vcxproj.AssemblyReference.cache
+C:\Users\varun\OneDrive\Desktop\EmployeeDB_DesignPattern\EmployeeDB_DesignPattern\x64\Debug\EmployeeDB_DesignPattern.vcxproj.SuggestedBindingRedirects.cache
