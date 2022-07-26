@@ -1,11 +1,11 @@
 #include "pch.h"
 #include "employee.h"
-#include "EmployeeHandler.h"
-#include "EmployeeFileHandler.h"
+
 
 enum E_details {e_id,e_name,e_age,e_dept,e_salary};
 enum I_operation {grter , lesser , equalto, grthanequal, lessthaequal };
 enum S_operation {startswith,endswith,containss};
+
 
 class SearchInterface 
 {

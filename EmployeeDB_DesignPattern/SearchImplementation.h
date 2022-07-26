@@ -23,6 +23,7 @@ public:
 
 	map<int, employee*> searchByInt(int value, E_details e, I_operation i_o, map<int, employee*>& m_emp);
 	map<int, employee*> searchByString(string value, E_details e, S_operation s_o, map<int, employee*>& m_emp);
+
 	bool ends_With(string const& str, string const& suffix);
 
 };

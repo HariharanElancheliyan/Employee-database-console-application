@@ -1,67 +1,45 @@
 #include "pch.h"
 #include "EmployeeFileHandler.h"
 #include "EmployeeHandler.h"
-#include "SearchImplementation.h"
+
 
 void printMap(map<int, employee*>& p_map)
 {
+    system("CLS");
+    
     size_t sizeofmap = p_map.size();
+    map<int, employee*> ::iterator it;
+    
+    
     if (sizeofmap == 0)
     {
         cout << " No Records match with your criteria" << endl;
     }
-    for (auto it : p_map)
-    {
-        cout << "Employee ID         : " << it.second->getempid() << endl;
-        cout << "Employee Name       : " << it.second->getempname() << endl;
-        cout << "Employee Age        : " << it.second->getempage() << endl;
-        cout << "Employee Department : " << it.second->getempdept() << endl;
-        cout << "Employee Salary     : " << it.second->getempsalary() << endl;
-        cout << "-----Department Level Information------" << endl;
-        employee* e_obj = it.second;
-        if (e_obj->getemptype() == 1)
-        {
-            developer* dobj = dynamic_cast<developer*>(e_obj);
-            if (dobj == nullptr)
-            {
-                cout << "NULL" << endl;
-            }
-            else
-            {
-                cout << "Employee Prog Lang  : " << dobj->getplang() << endl;
-                cout << "Employee Team Name  : " << dobj->gettname() << endl;
-                cout << "________________________________________________" << endl << endl;
-            }
-        }
-        else if (e_obj->getemptype() == 2)
-        {
-            qa* qaobj = dynamic_cast<qa*>(e_obj);
-            if (qaobj == nullptr)
-            {
-                cout << "NULL" << endl;
-            }
-            else
-            {
-                cout << "Assigned Project    : " << qaobj->getassprjt() << endl;
-                cout << "Employee Skill/Tool : " << qaobj->gettools() << endl;
-                cout << "________________________________________________" << endl << endl;
-            }
-        }
-        else if (e_obj->getemptype() == 3)
-        {
-            Manager* ma_obj = dynamic_cast<Manager*>(e_obj);
-            if (ma_obj == nullptr)
-            {
-                cout << "NULL" << endl;
-            }
-            else
-            {
-                cout << "No of Project       : " << ma_obj->getnfprjt() << endl;
-                cout << "Years of Experience : " << ma_obj->getyexp() << endl;
-                cout << "________________________________________________" << endl << endl;
-            }
-        }
 
+
+    cout << "ID \tName \t\tAge \tDepartment \t\tSalary\tProg.Language\tTeam Name   Assigned Project   Technologies/Tools   No.of Project  Years of Experience" << endl;
+    cout << "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+    
+    
+    for (it = p_map.begin(); it != p_map.end(); it++)
+    {
+        cout << it->second->getempid() << '\t' << it->second->getempname() << '\t' << '\t' << it->second->getempage() << '\t' << it->second->getempdept();
+        employee* eobj = it->second;
+        if (eobj->getempdept() == "Developer")
+        {
+            developer* devobj = dynamic_cast<developer*>(eobj);
+            cout << "\t\t" << devobj->getempsalary() << '\t' << devobj->getplang() << "\t\t" << devobj->gettname() << endl;
+        }
+        else if (eobj->getempdept() == "Quality_Assuarance")
+        {
+            qa* qaobj = dynamic_cast<qa*>(eobj);
+            cout << '\t' << qaobj->getempsalary() << '\t' << "-" << "\t\t" << '-' << "\t\t" << qaobj->getassprjt() << "\t\t" << qaobj->gettools() << endl;
+        }
+        else if (eobj->getempdept() == "Manager")
+        {
+            Manager* maobj = dynamic_cast<Manager*>(eobj);
+            cout << "\t\t\t" << maobj->getempsalary() << '\t' << "-" << "\t\t" << '-' << "                                                      \0" << maobj->getnfprjt() << "             \0" << maobj->getyexp() << endl;
+        }
     }
 }
 
@@ -73,7 +51,7 @@ int main()
     int age;
     string dept;
     int emptype = 0;
-    double salary;
+    int salary;
     string val1;
     string val2;
     string v;
@@ -82,20 +60,25 @@ int main()
     char search_yn;
     int dp_ch = 0;
     bool save_flag = false;
-    //map<int, employee*>printmap;
-    map<int, employee*>thirdmap;
+    int arn = 0;
+
+    map<int, employee*>p_map;
     map<int, employee*>Current_map;
     map<int, employee*>Prev_map;
+
+
     EmployeeHandler* emp_handler = new EmployeeFileHandler("employee_db.txt");
     do
     {
         int ch;
-        cout << "\n1.Add Employee Data\n2.List all Employee Data\n3.Delete Employee Data\n4.Normal Search\n5.Save to a File\n6.Multiple Filter Search" << endl;
+        cout << "\n1.Add Employee Data\n2.List all Employee Data\n3.Delete Employee Data\n4.Search\n5.Save to a File" << endl;
         cout << "Enter your Choice:" << endl;
         cin >> ch;
+ 
         switch (ch)
         {
         case 1:
+
             cout << "Enter ID:" << endl;
             for (;;)
             {
@@ -128,6 +111,8 @@ int main()
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 }
             }
+
+
             cout << "Select your Department" << endl;
             cout << "1.Developer\n2.Quality Assurance\n3.Manager" << endl;
             cout << "Enter 1 or 2 or 3:";
@@ -145,6 +130,7 @@ int main()
                 }
             }
 
+
             cout << "Enter Salary:" << endl;
             for (;;)
             {
@@ -159,6 +145,7 @@ int main()
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 }
             }
+
 
             if (dp_ch == 1)
             {
@@ -178,7 +165,6 @@ int main()
                 sd.team = val2;
                 emp_handler->addData(emptype, sd);
             }
-
             else if (dp_ch == 2)
             {
                 emptype = 2;
@@ -200,11 +186,13 @@ int main()
             else if (dp_ch == 3)
             {
                 emptype = 3;
+
                 dept = "Manager";
                 cout << "Enter No.of Project :" << endl;
                 cin >> val1;
                 cout << "Enter Years of Experience:" << endl;
                 cin >> val2;
+
                 sm sman;
                 sman.id = id;
                 sman.name = name;
@@ -216,9 +204,12 @@ int main()
                 emp_handler->addData(emptype, sman);
 
             }
-            save_flag = false;
+
+            save_flag = true;
+
             break;
         case 2:
+
             if (emp_handler->ListData())
             {
                 cout << "Listed Sucessfully" << endl;
@@ -228,10 +219,13 @@ int main()
                 cout << "No data Found" << endl;
             }
             break;
+
         case 3:
             int d_id;
+
             cout << "Enter ID to Delete :" << endl;
             cin >> d_id;
+
             if (emp_handler->DeleteData(d_id))
             {
                 cout << "Deleted Sucessfully" << endl;
@@ -240,265 +234,170 @@ int main()
             {
                 cout << "No records Found" << endl;
             }
-            save_flag = false;
+
+            save_flag = true;
+
             break;
         case 4:
-        {
-            int e_option;
-            int op{};
-            int s_op{};
-            E_details ed{};
-            cout << "1.ID\n2.Name\n3.Age\n4.Department\n5.Salary" << endl;
-            cout << "Select Option to Search:";
-            cin >> e_option;
-            cout << "Enter value to search:" << endl;
-            cin >> v;
-            //Enum for Field
-            if (e_option == 1)
             {
-                ed = e_id;
-            }
-            else if (e_option == 2)
-            {
-                ed = e_name;
-            }
-            else if (e_option == 3)
-            {
-                ed = e_age;
-            }
-            else if (e_option == 4)
-            {
-                ed = e_dept;
-            }
-            else if (e_option == 5)
-            {
-                ed = e_salary;
-            }
-            SearchInterface* s = new SearchImplementation();
-            if (e_option == 1 || e_option == 3 || e_option == 5)
-            {
-                thirdmap = s->searchByInt(stoi(v), ed, equalto, emp_handler->mapData());
-            }
-            else
-            {
-                thirdmap = s->searchByString(v, ed, containss, emp_handler->mapData());
-            }
+                do
+                {
+                    int e_option;
+                    int op{};
+                    int s_op{};
+                    E_details ed{};
+                    I_operation io{};
+                    S_operation so{};
+                    map<int, employee*>SourceMap = emp_handler->mapData();
+                    
+                    if (arn != 3)
+                    {
+                        cout << "1.ID\n2.Name\n3.Age\n4.Department\n5.Salary" << endl;
+                        cout << "Select Option to Search:";
+                        cin >> e_option;
 
-            printMap(thirdmap);
+                        if (e_option == 1 || e_option == 3 || e_option == 5)
+                        {
+                            cout << endl;
+                            cout << "1.Greater than\n2.Lesser than\n3.Equals to\n4.Greater than or equals to\n5.Lesser than or equals to" << endl;
+                            cout << "Enter Operation to search:" << endl;
+                            cin >> op;
+                        }
+                        else if (e_option == 2 || e_option == 4)
+                        {
+                            cout << endl;
+                            cout << "1.Starts with\n2.Ends with\n3.Contains" << endl;
+                            cout << "Enter Operation to search:" << endl;
+                            cin >> s_op;
+                        }
+
+                        {
+                            if (e_option == 1)
+                            {
+                                ed = e_id;
+                            }
+                            else if (e_option == 2)
+                            {
+                                ed = e_name;
+                            }
+                            else if (e_option == 3)
+                            {
+                                ed = e_age;
+                            }
+                            else if (e_option == 4)
+                            {
+                                ed = e_dept;
+                            }
+                            else if (e_option == 5)
+                            {
+                                ed = e_salary;
+                            }
+                            //Enum for Integer Operation
+                            if (op == 1)
+                            {
+                                io = grter;
+                            }
+                            else if (op == 2)
+                            {
+                                io = lesser;
+                            }
+                            else if (op == 3)
+                            {
+                                io = equalto;
+                            }
+                            else if (op == 4)
+                            {
+                                io = grthanequal;
+                            }
+                            else if (op == 5)
+                            {
+                                io = lessthaequal;
+                            }
+
+                            //Enum for String operation
+                            if (s_op == 1)
+                            {
+                                so = startswith;
+                            }
+                            else if (s_op == 2)
+                            {
+                                so = endswith;
+                            }
+                            else if (s_op == 3)
+                            {
+                                so = containss;
+                            }
+                        }
+
+                        cout << "Enter value to search:" << endl;
+                        cin >> v;
+
+                        if (arn == 0 || arn == 2)
+                        {
+                            if (e_option == 1 || e_option == 3 || e_option == 5)
+                            {
+                                Current_map = emp_handler->SearchData(stoi(v), ed, io, SourceMap);
+                            }
+                            else if (e_option == 2 || e_option == 4)
+                            {
+                                Current_map = emp_handler->SearchData(v, ed, so, SourceMap);
+                            }
+                            if (arn == 2)
+                            {
+                                Current_map = emp_handler->PerformSetOperation(Prev_map, Current_map, _or);
+                            }
+                        }
+                        else if (arn == 1)
+                        {
+                            if (e_option == 1 || e_option == 3 || e_option == 5)
+                            {
+                                Current_map = emp_handler->SearchData(stoi(v), ed, io, Prev_map);
+                            }
+                            else if (e_option == 2 || e_option == 4)
+                            {
+                                Current_map = emp_handler->SearchData(v, ed, so, Prev_map);
+                            }
+
+                            Current_map = emp_handler->PerformSetOperation(Prev_map, Current_map, _and);
+                        }
+
+                        printMap(Current_map);
+                    }
+                    else if (arn == 3)
+                    {
+                        Current_map = emp_handler->PerformSetOperation(Prev_map, Current_map, _not);
+                        printMap(Current_map);
+                    }
+
+
+                    cout << "Do you want to add filter? y/n" << endl;
+                    cin >> s_yn;
+
+
+                    if (s_yn == 'y')
+                    {
+                        Prev_map = Current_map;
+                        cout << "Operations :\n1.AND\n2.OR\n3.NOT " << endl;
+                        cin >> arn;
+                    }
+
+                } while (s_yn != 'n');
+            }
             break;
-        }
         case 5:
-            save_flag = true;
+            save_flag = false;
             emp_handler->saveData();
             break;
-        case 6:
-            {
-            int e_option;
-            int op{};
-            int s_op{};
-            E_details ed{};
-            I_operation io{};
-            S_operation so{};
-            cout << "1.ID\n2.Name\n3.Age\n4.Department\n5.Salary" << endl;
-            cout << "Select Option to Search:";
-            cin >> e_option;
-            if (e_option == 1 || e_option == 3 || e_option == 5)
-            {
-                cout << endl;
-                cout << "1.Greater than\n2.Lesser than\n3.Equals to\n4.Greater than or equals to\n5.Lesser than or equals to" << endl;
-                cout << "Enter Operation to search:" << endl;
-                cin >> op;
-            }
-            else if (e_option == 2 || e_option == 4)
-            {
-                cout << endl;
-                cout << "1.Starts with\n2.Ends with\n3.Contains" << endl;
-                cout << "Enter Operation to search:" << endl;
-                cin >> s_op;
-            }
-            cout << "Enter value to search:" << endl;
-            cin >> v;
-            {
-                //Enum for Field
-                if (e_option == 1)
-                {
-                    ed = e_id;
-                }
-                else if (e_option == 2)
-                {
-                    ed = e_name;
-                }
-                else if (e_option == 3)
-                {
-                    ed = e_age;
-                }
-                else if (e_option == 4)
-                {
-                    ed = e_dept;
-                }
-                else if (e_option == 5)
-                {
-                    ed = e_salary;
-                }
 
-                //Enum for Integer Operation
-                if (op == 1)
-                {
-                    io = grter;
-                }
-                else if (op == 2)
-                {
-                    io = lesser;
-                }
-                else if (op == 3)
-                {
-                    io = equalto;
-                }
-                else if (op == 4)
-                {
-                    io = grthanequal;
-                }
-                else if (op == 5)
-                {
-                    io = lessthaequal;
-                }
-
-                //Enum for String operation
-                if (s_op == 1)
-                {
-                    so = startswith;
-                }
-                else if (s_op == 2)
-                {
-                    so = endswith;
-                }
-                else if (s_op == 3)
-                {
-                    so = containss;
-                }
-            }
-            SearchImplementation* s = new SearchImplementation();
-            if (e_option == 1 || e_option == 3 || e_option == 5)
-            {
-                Prev_map = s->searchByInt(stoi(v), ed, io, emp_handler->mapData());
-            }
-            else
-            {
-                Prev_map = s->searchByString(v, ed, so, emp_handler->mapData());
-            }
-            int secon_and_or;
-            do
-            {
-                int e_option;
-                int op{};
-                int s_op{};
-                E_details ed{};
-                I_operation io{};
-                S_operation so{};
-
-                cout << "Operations :\n1.AND\n2.OR\n3.NOT " << endl;
-                cin >> secon_and_or;
-
-                
-                cout << "1.ID\n2.Name\n3.Age\n4.Department\n5.Salary" << endl;
-                cout << "Select Option to Search:";
-                cin >> e_option;
-                if (e_option == 1 || e_option == 3 || e_option == 5)
-                {
-                    cout << endl;
-                    cout << "1.Greater than\n2.Lesser than\n3.Equals to\n4.Greater than or equals to\n5.Lesser than or equals to" << endl;
-                    cout << "Enter Operation to search:" << endl;
-                    cin >> op;
-                }
-                else if (e_option == 2 || e_option == 4)
-                {
-                    cout << endl;
-                    cout << "1.Starts with\n2.Ends with\n3.Contains" << endl;
-                    cout << "Enter Operation to search:" << endl;
-                    cin >> s_op;
-                }
-                cout << "Enter value to search:" << endl;
-                cin >> v;
-                {
-                    //Enum for Field
-                    if (e_option == 1)
-                    {
-                        ed = e_id;
-                    }
-                    else if (e_option == 2)
-                    {
-                        ed = e_name;
-                    }
-                    else if (e_option == 3)
-                    {
-                        ed = e_age;
-                    }
-                    else if (e_option == 4)
-                    {
-                        ed = e_dept;
-                    }
-                    else if (e_option == 5)
-                    {
-                        ed = e_salary;
-                    }
-
-                    //Enum for Integer Operation
-                    if (op == 1)
-                    {
-                        io = grter;
-                    }
-                    else if (op == 2)
-                    {
-                        io = lesser;
-                    }
-                    else if (op == 3)
-                    {
-                        io = equalto;
-                    }
-                    else if (op == 4)
-                    {
-                        io = grthanequal;
-                    }
-                    else if (op == 5)
-                    {
-                        io = lessthaequal;
-                    }
-
-                    //Enum for String operation
-                    if (s_op == 1)
-                    {
-                        so = startswith;
-                    }
-                    else if (s_op == 2)
-                    {
-                        so = endswith;
-                    }
-                    else if (s_op == 3)
-                    {
-                        so = containss;
-                    }
-                }
-                SearchImplementation* s = new SearchImplementation();
-                if (e_option == 1 || e_option == 3 || e_option == 5)
-                {
-                    Current_map = s->searchByInt(stoi(v), ed, io, emp_handler->mapData());
-                }
-                else
-                {
-                    Current_map = s->searchByString(v, ed, so, emp_handler->mapData());
-                }
-                cout << "Do you want to add filter again ? y/n " << endl;
-                cin >> search_yn;
-                thirdmap = emp_handler->SearchData(Prev_map, Current_map, secon_and_or);
-                
-            } while (search_yn!='n');
-            printMap(emp_handler->SearchData(thirdmap, Current_map, secon_and_or));
+        default:
+            cout << "Enter a Valid Choice" << endl;
             break;
-            }
         }
+
         cout << "Do you want to continue? y/n:" << endl;
         cin >> yn;
-        if (yn == 'n' && save_flag == false)
+
+        if (yn == 'n' && save_flag == true)
         {
             cout << "Do you want to Save? y/n:" << endl;
             cin >> s_yn;
@@ -507,6 +406,7 @@ int main()
                 emp_handler->saveData();
             }
         }
-    } while (yn != 'n');
-}
 
+    }while (yn != 'n');
+
+}

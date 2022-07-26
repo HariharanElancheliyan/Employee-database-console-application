@@ -21,7 +21,7 @@ void employee::setempdept(string dept)
 	emp_dept = dept;
 }
 
-void employee::setempsalary(double salary)
+void employee::setempsalary(int salary)
 {
 	emp_salary = salary;
 }

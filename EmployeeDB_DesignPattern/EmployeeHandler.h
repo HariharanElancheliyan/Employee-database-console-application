@@ -4,6 +4,9 @@
 #include "Developer.h"
 #include "qa.h"
 #include "Employeefactory.h"
+#include "SearchImplementation.h"
+
+enum Set_op { _and, _or, _not };
 
 struct sdev
 {
@@ -42,12 +45,14 @@ class EmployeeHandler
 {
 protected:
 	map<int, employee*> m_emp;
+	SearchImplementation* s_i;
+
 
 public:
 	//Defualt constructor
 	EmployeeHandler()
 	{
-
+		
 	}
 
 	//Virtual Destructor
@@ -58,17 +63,34 @@ public:
 		{
 			delete (it->second);
 		} 
+
+		s_i->~SearchImplementation();
+
+
+		if (s_i != nullptr)
+		{
+			delete s_i;
+		}
+		
 	}
 
 	virtual bool addData(int i, sdev sd) = 0;
 	virtual bool addData(int i, sqa sq) = 0;
 	virtual bool addData(int i, sm smm) = 0;
-	virtual bool ListData() = 0;
-	virtual bool DeleteData(int id) = 0;
-	virtual void saveData() = 0;
-	virtual void Loadfromfile(string s) = 0;
-	virtual map<int, employee*> SearchData(map<int, employee*>& m1, map<int, employee*>& m2,int i) = 0;
 
-	map<int, employee*> mapData();
+	virtual bool ListData() = 0;
+	
+	virtual bool DeleteData(int id) = 0;
+	
+	virtual void saveData() = 0;
+	
+	virtual void Loadfromfile(string s) = 0;
+	
+	virtual map<int, employee*> SearchData(int v, E_details ed, I_operation i_op, map<int, employee*>& _map) = 0;
+	virtual map<int, employee*> SearchData(string v, E_details ed, S_operation s_op, map<int, employee*>& _map) = 0;
+
+	virtual map<int, employee*> PerformSetOperation(map<int, employee*>& m1, map<int, employee*>& m2, Set_op s) = 0;
+
+	map<int, employee*> mapData() { return m_emp; };
 };
 

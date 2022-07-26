@@ -147,7 +147,6 @@ map<int, employee*> SearchImplementation::searchByInt(int value, E_details e, I_
     return temp_map;
 }
 
-
 map<int, employee*> SearchImplementation::searchByString(string value, E_details e, S_operation s_o, map<int, employee*>& m_emp)
 {
     map<int, employee*> ::iterator it;

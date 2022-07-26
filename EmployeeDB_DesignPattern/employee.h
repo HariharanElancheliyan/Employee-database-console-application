@@ -10,7 +10,7 @@ private:
 	string emp_name;
 	int emp_age;
 	string emp_dept;
-	double emp_salary;
+	int emp_salary;
 	int empType;
 
 public :
@@ -22,7 +22,7 @@ public :
 	}
 
 	//Parameterized Constructor
-	employee(int id, string name, int age, string dept, double salary,int e)
+	employee(int id, string name, int age, string dept, int salary,int e)
 		: emp_id(id), emp_name(name), emp_age(age), emp_dept(dept), emp_salary(salary),empType(e)
 	{
 	}
@@ -38,7 +38,7 @@ public :
 	void setempname(string name);
 	void setempage(int age);
 	void setempdept(string dept);
-	void setempsalary(double salary);
+	void setempsalary(int salary);
 	void setemptype(int t);
 
 

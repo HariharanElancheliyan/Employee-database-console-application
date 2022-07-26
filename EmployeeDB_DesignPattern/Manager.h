@@ -13,7 +13,7 @@ public:
 	{
 
 	}
-	Manager(int id, string name, int age, string dept, double salary, int nfprjt, int yexp, int etype)
+	Manager(int id, string name, int age, string dept, int salary, int nfprjt, int yexp, int etype)
 		:employee(id, name, age, dept, salary, etype), noofprjt(nfprjt), yofexp(yexp)
 	{
 

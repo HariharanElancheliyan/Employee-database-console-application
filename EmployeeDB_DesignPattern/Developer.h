@@ -15,7 +15,7 @@ public:
 	}
 
 	//Parameterized constructor
-	developer(int id, string name, int age, string dept, double salary,string plang,string tname,int etype)
+	developer(int id, string name, int age, string dept, int salary,string plang,string tname,int etype)
 		:employee(id,name,age,dept,salary, etype),prog_lang(plang),team_name(tname)
 	{
 

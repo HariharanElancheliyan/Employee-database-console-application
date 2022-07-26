@@ -13,7 +13,7 @@ public:
 	}
 
 	//Parameterized Constructor
-	qa(int id, string name, int age, string dept, double salary, string apjt, string tls,int etype)
+	qa(int id, string name, int age, string dept, int salary, string apjt, string tls,int etype)
 		:employee(id, name, age, dept, salary,etype), assprjt(apjt), tools(tls)
 	{
 

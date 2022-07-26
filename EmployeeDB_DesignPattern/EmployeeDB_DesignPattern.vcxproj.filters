@@ -76,13 +76,7 @@
     <ClCompile Include="EmployeeFileHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EmployeeHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SearchInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SearchImplementation.cpp">

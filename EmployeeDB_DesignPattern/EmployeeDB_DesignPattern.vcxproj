@@ -145,11 +145,9 @@
     <ClCompile Include="ClientCode.cpp" />
     <ClCompile Include="Employeefactory.cpp" />
     <ClCompile Include="EmployeeFileHandler.cpp" />
-    <ClCompile Include="EmployeeHandler.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="qa.cpp" />
     <ClCompile Include="SearchImplementation.cpp" />
-    <ClCompile Include="SearchInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="app.ico" />
