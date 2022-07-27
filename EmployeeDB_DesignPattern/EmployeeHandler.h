@@ -46,13 +46,14 @@ class EmployeeHandler
 protected:
 	map<int, employee*> m_emp;
 	SearchImplementation* s_i;
-
+	
+	//searchimplemntation * 
 
 public:
 	//Defualt constructor
 	EmployeeHandler()
 	{
-		
+		s_i = new SearchImplementation();
 	}
 
 	//Virtual Destructor
@@ -63,9 +64,6 @@ public:
 		{
 			delete (it->second);
 		} 
-
-		s_i->~SearchImplementation();
-
 
 		if (s_i != nullptr)
 		{
@@ -92,5 +90,8 @@ public:
 	virtual map<int, employee*> PerformSetOperation(map<int, employee*>& m1, map<int, employee*>& m2, Set_op s) = 0;
 
 	map<int, employee*> mapData() { return m_emp; };
+
+	//virtual bool Modify(string v , enum ) todo
+
 };
 

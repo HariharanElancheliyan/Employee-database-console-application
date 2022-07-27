@@ -2,11 +2,7 @@
 #include "SearchInterface.h"
 
 class SearchImplementation : public SearchInterface
-{
-private:
-	map<int, employee*> temp_map;
-	map<int, employee*> s_temp_map;
-	
+{	
 public:
 
 	//Default Constructor

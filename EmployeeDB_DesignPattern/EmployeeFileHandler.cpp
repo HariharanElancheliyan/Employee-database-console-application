@@ -221,13 +221,11 @@ void EmployeeFileHandler::Loadfromfile(string s)
 
 map<int, employee*> EmployeeFileHandler::SearchData(int v, E_details ed, I_operation i_op, map<int, employee*>& _map)
 {  
-    s_i = new SearchImplementation();
    return (s_i->searchByInt(v, ed, i_op, _map));
 }
 
 map<int, employee*> EmployeeFileHandler::SearchData(string v, E_details ed, S_operation s_op, map<int, employee*>& _map)
 {
-    s_i = new SearchImplementation();
     return (s_i->searchByString(v, ed, s_op, _map));
 }
 

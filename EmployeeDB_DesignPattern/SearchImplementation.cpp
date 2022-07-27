@@ -15,6 +15,8 @@ bool SearchImplementation::ends_With(string const& str, string const& suffix)
 
 map<int, employee*> SearchImplementation::searchByInt(int value, E_details e, I_operation i_o, map<int, employee*>& m_emp)
 {
+    map<int, employee*> temp_map;
+
     map<int, employee*> ::iterator it;
     switch (e)
     {
@@ -149,6 +151,8 @@ map<int, employee*> SearchImplementation::searchByInt(int value, E_details e, I_
 
 map<int, employee*> SearchImplementation::searchByString(string value, E_details e, S_operation s_o, map<int, employee*>& m_emp)
 {
+    map<int, employee*> s_temp_map;
+
     map<int, employee*> ::iterator it;
     switch (e)
     {

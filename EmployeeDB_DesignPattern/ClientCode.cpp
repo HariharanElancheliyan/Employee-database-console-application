@@ -55,10 +55,12 @@ int main()
     string val1;
     string val2;
     string v;
+
     char yn;
     char s_yn;
     char search_yn;
     int dp_ch = 0;
+
     bool save_flag = false;
     int arn = 0;
 
@@ -385,11 +387,13 @@ int main()
             }
             break;
         case 5:
+
             save_flag = false;
             emp_handler->saveData();
             break;
 
         default:
+
             cout << "Enter a Valid Choice" << endl;
             break;
         }
